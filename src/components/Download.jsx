@@ -13,8 +13,6 @@ export default function Download() {
     appId: "1:42998705292:web:5e3c3e9eaefec5416b5fa9",
     measurementId: "G-Q7B7CDSC1Z"
   };
-
-
   const deleteComma = string => string.replace(",", "")
   const csvConfig = mkConfig({
     useKeysAsHeaders: true
@@ -26,28 +24,31 @@ export default function Download() {
   const startProcess = async () => {
     const app = initializeApp(firebaseConfig)
     const db = getFirestore(app)
-    const q = query(collection(db, "usersBiodiversidad"))
+    const q = query(collection(db, "usersGestionDeProyectos"))
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       const {
         cargo,
         email,
         lastName,
+        medioWebinar,
         name,
         organization,
         partWebinar,
-        partWebinarAgua,
+        participationWebinar,
         proxWebinar,
-        sector
+        sector,
+
       } = doc.data()
 
       const dataInd = {
-        Name: name,
-        LastName: lastName,
+        Nombre: name,
+        Apellido: lastName,
         Email: email,
         Organizacion: deleteComma(organization),
-        CambioClimatico: partWebinar,
-        Agua: partWebinarAgua,
+        ParticipacionUltWebinarDato: partWebinar,
+        MedioWebinar: deleteComma(medioWebinar),
+        ParticipationUltWebinarSiNo: participationWebinar,
         Proximo: proxWebinar,
         Cargo: deleteComma(cargo),
         Sector: deleteComma(sector)
