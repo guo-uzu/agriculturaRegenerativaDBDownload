@@ -5,20 +5,18 @@ import { mkConfig, generateCsv, download } from 'export-to-csv';
 
 export default function Download() {
   const firebaseConfig = {
-    apiKey: "AIzaSyDxlDVf_ayLbYoIpwjixtKbiXteF6suo5o",
-    authDomain: "agricultura-regenerativa-dc9bc.firebaseapp.com",
-    projectId: "agricultura-regenerativa-dc9bc",
-    storageBucket: "agricultura-regenerativa-dc9bc.appspot.com",
-    messagingSenderId: "42998705292",
-    appId: "1:42998705292:web:5e3c3e9eaefec5416b5fa9",
-    measurementId: "G-Q7B7CDSC1Z"
+    apiKey: import.meta.env.PUBLIC_API_KEY ,
+    authDomain: import.meta.env.PUBLIC_AUTH_DOMAIN,
+    projectId: import.meta.env.PUBLIC_PROJECT_ID,
+    storageBucket: import.meta.env.PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.PUBLIC_MESSAGING_SENDER_ID,
+    appId: import.meta.env.PUBLIC_API_ID,
+    measurementId: import.meta.env.PUBLIC_MEASUREMENT_ID
   };
   const deleteComma = string => string.replace(",", "")
   const csvConfig = mkConfig({
     useKeysAsHeaders: true
   })
-
-  
   let dataComplete = []
 
   const startProcess = async () => {
